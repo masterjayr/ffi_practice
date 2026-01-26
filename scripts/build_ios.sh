@@ -21,8 +21,8 @@ ZXING_GIT_REF="v2.2.1" # or a tag like "v2.3.0"
 # 1) If you already have opencv2.framework or opencv2.xcframework in native/ios/Frameworks,
 #    the script will use it.
 # 2) Otherwise it will try to download a zip from a URL you set below.
-OPENCV_ZIP_URL=""   # (later) point to your GitHub Release asset
-OPENCV_ZIP_SHA256="" # optional integrity check
+OPENCV_ZIP_URL="${OPENCV_ZIP_URL:-}"
+OPENCV_ZIP_SHA256="${OPENCV_ZIP_SHA256:-}" # optional integrity check
 
 # -------------------------
 # Helpers
