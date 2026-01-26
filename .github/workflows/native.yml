@@ -20,6 +20,7 @@ jobs:
       - name: Build iOS native framework
         run: |
           chmod +x scripts/build_ios.sh
+          OPENCV_ZIP_URL=https://github.com/masterjayr/ffi_practice/releases/download/v12.0/opencv2.framework.zip \
           scripts/build_ios.sh
 
       - name: Upload xcframework artifact
