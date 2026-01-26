@@ -15,7 +15,7 @@ mkdir -p "$BUILD_DIR" "$THIRD_PARTY_DIR" "$IOS_FRAMEWORKS_DIR" "$NATIVE_IOS_FRAM
 
 # Where to get ZXing source from:
 ZXING_GIT_URL="https://github.com/zxing-cpp/zxing-cpp.git"
-ZXING_GIT_REF="master" # or a tag like "v2.3.0"
+ZXING_GIT_REF="v2.2.1" # or a tag like "v2.3.0"
 
 # OpenCV source of truth (choose one):
 # 1) If you already have opencv2.framework or opencv2.xcframework in native/ios/Frameworks,
@@ -51,7 +51,7 @@ clone_or_update_repo() {
 
   if [[ ! -d "$dest/.git" ]]; then
     log "Cloning $url -> $dest"
-    git clone --depth 1 --branch "$ref" "$url" "$dest"
+    git clone --branch "$ref" --depth 1 "$url" "$dest"
   else
     log "Updating $dest"
     git -C "$dest" fetch --all --tags
@@ -121,8 +121,9 @@ build_zxing_one() {
   -DCMAKE_OSX_SYSROOT="$sdk" \
   -DCMAKE_OSX_ARCHITECTURES="$arch" \
   -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
-  -DCMAKE_CXX_STANDARD=20 \
-  -DCMAKE_CXX_STANDARD_REQUIRED=ON
+  -DCMAKE_CXX_STANDARD=17 \
+  -DCMAKE_CXX_STANDARD_REQUIRED=ON \
+  -DCMAKE_CXX_EXTENSIONS=OFF
 
   log "Building ZXing for sdk=$sdk arch=$arch"
   cmake --build . --config Release --target ZXing
