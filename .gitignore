@@ -75,3 +75,5 @@ native/include/
 *.so
 *.a
 *.dylib
+
+zxing-cpp
