@@ -19,8 +19,8 @@ jobs:
 
       - name: Build iOS native framework
         run: |
-          chmod +x native/scripts/build_ios.sh
-          native/scripts/build_ios.sh
+          chmod +x scripts/build_ios.sh
+          scripts/build_ios.sh
 
       - name: Upload xcframework artifact
         uses: actions/upload-artifact@v4
