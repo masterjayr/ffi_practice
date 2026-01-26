@@ -203,7 +203,8 @@ build_ffi_practice_native_xcframework() {
   ensure_opencv_present
 
   # Copy ZXing.xcframework into native/ios/Frameworks for Xcode to find
-  rsync -a --delete "$zxing_xc" "$NATIVE_IOS_FRAMEWORKS_DIR/ZXing.xcframework"
+  rm -rf "$NATIVE_IOS_FRAMEWORKS_DIR/ZXing.xcframework"
+  rsync -a "$zxing_xc/" "$NATIVE_IOS_FRAMEWORKS_DIR/ZXing.xcframework/"
 
   # Build archive for device
   log "Archiving ffi_practice_native (iphoneos)"
