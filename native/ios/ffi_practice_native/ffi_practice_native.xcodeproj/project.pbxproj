@@ -9,14 +9,12 @@
 /* Begin PBXBuildFile section */
 		007242182F22B8610022945E /* ffi_practice_native.h in Headers */ = {isa = PBXBuildFile; fileRef = 007242172F22B8610022945E /* ffi_practice_native.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0086EC312F1EBFB000CF4AD7 /* ZXing.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0086EC302F1EBFB000CF4AD7 /* ZXing.xcframework */; };
-		0086EC322F1EBFB000CF4AD7 /* ZXing.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0086EC302F1EBFB000CF4AD7 /* ZXing.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0086EC332F1EBFD000CF4AD7 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CC9F6B2F104944002E68CD /* opencv2.framework */; };
 		0086EC342F1EBFD100CF4AD7 /* opencv2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00CC9F6B2F104944002E68CD /* opencv2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0086EC352F1EBFD100CF4AD7 /* ZXing.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0086EC302F1EBFB000CF4AD7 /* ZXing.xcframework */; };
 		0086EC362F1EBFD200CF4AD7 /* ZXing.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0086EC302F1EBFB000CF4AD7 /* ZXing.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00CC99932F104105002E68CD /* ffi_practice_native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CC99872F104105002E68CD /* ffi_practice_native.framework */; };
 		00CC9F6D2F104944002E68CD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CC9F6B2F104944002E68CD /* opencv2.framework */; };
-		00CC9F6E2F104945002E68CD /* opencv2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00CC9F6B2F104944002E68CD /* opencv2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0086EC322F1EBFB000CF4AD7 /* ZXing.xcframework in Embed Frameworks */,
-				00CC9F6E2F104945002E68CD /* opencv2.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +449,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.ffi-practice-native";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PRODUCT_MODULE_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -499,7 +495,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.ffi-practice-native";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PRODUCT_MODULE_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
