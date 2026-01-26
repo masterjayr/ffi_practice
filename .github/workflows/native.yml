@@ -18,9 +18,10 @@ jobs:
           brew install cmake ninja
 
       - name: Build iOS native framework
+        env:
+          OPENCV_ZIP_URL: https://github.com/masterjayr/ffi_practice/releases/download/v12.0/opencv2.framework.zip
         run: |
           chmod +x scripts/build_ios.sh
-          OPENCV_ZIP_URL=https://github.com/masterjayr/ffi_practice/releases/download/v12.0/opencv2.framework.zip \
           scripts/build_ios.sh
 
       - name: Upload xcframework artifact
