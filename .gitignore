@@ -48,6 +48,7 @@ android/.gradle/
 android/build/
 android/app/build/
 android/src/main/jniLibs/
+example/android/app/src/main/jniLibs/
 
 # Native build outputs
 native/build/
@@ -55,10 +56,10 @@ native/.build/
 native/**/build/
 
 # Android native outputs
-native/android/
 native/libs/
 native/**/libs/
 native/**/jniLibs/
+native/android/*/
 
 # iOS native outputs
 native/ios/Frameworks/

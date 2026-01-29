@@ -32,3 +32,51 @@ jobs:
         with:
           name: ffi_practice_native_ios
           path: ios/Frameworks/ffi_practice_native.xcframework
+
+  android-native:
+    name: Build Android native libs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install NDK
+        run: |
+          sdkmanager "ndk;29.0.13599879"
+
+      - name: Export ANDROID_NDK_HOME
+        run: |
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/29.0.13599879" >> $GITHUB_ENV
+
+      - name: Make scripts executable
+        run: |
+          chmod +x scripts/build_android.sh
+
+      - name: Build Android native libraries
+        run: |
+          scripts/build_android.sh
+
+      - name: Verify outputs
+        run: |
+          ls -R android/src/main/jniLibs
+
+      - name: Commit native Android binaries
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add android/src/main/jniLibs
+          git commit -m "chore(android): update native binaries" || echo "No changes"
+          git push

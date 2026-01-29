@@ -32,19 +32,14 @@ android {
         ndk {
             abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
         }
-
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++17"
-            }
-        }
     }
 
-    externalNativeBuild {
-        cmake {
-            path = file("../../../native/CMakeLists.txt")
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDir("src/main/jniLibs")
         }
     }
+    
 
     buildTypes {
         release {
