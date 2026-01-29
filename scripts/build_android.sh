@@ -254,6 +254,36 @@ copy_plugin_outputs_one() {
   log "✅ Copied outputs for $abi"
 }
 
+copy_opencv_headers() {
+  local src="$THIRD_PARTY_DIR/opencv-android-sdk/sdk/native/jni/include/opencv2"
+  local dst="$ROOT_DIR/native/include/opencv2"
+
+  if [[ -d "$dst" ]]; then
+    log "OpenCV headers already present"
+    return
+  fi
+
+  log "Copying OpenCV headers"
+  mkdir -p "$ROOT_DIR/native/include"
+  cp -R "$src" "$dst"
+}
+
+copy_zxing_headers() {
+  local src="$THIRD_PARTY_DIR/zxing-cpp/core/src"
+  local dst="$ROOT_DIR/native/include/ZXing"
+
+  if [[ -d "$dst" ]]; then
+    log "ZXing headers already present"
+    return
+  fi
+
+  log "Copying ZXing headers"
+  mkdir -p "$dst"
+
+  # Copy all public ZXing headers
+  cp "$src"/*.h "$dst/"
+}
+
 # -------------------------------------------------
 # Main
 # -------------------------------------------------
@@ -263,9 +293,12 @@ main() {
   [[ -n "${ANDROID_NDK_HOME:-}" ]] || { echo "❌ ANDROID_NDK_HOME is not set"; exit 1; }
 
   ensure_opencv_android
+  copy_opencv_headers
 
   local zxing_src="$THIRD_PARTY_DIR/zxing-cpp"
   clone_or_update_repo "$ZXING_GIT_URL" "$ZXING_GIT_REF" "$zxing_src"
+
+  copy_zxing_headers
 
   for abi in "${ABIS[@]}"; do
     build_zxing_one "$zxing_src" "$abi" "$OUT_ANDROID_DIR"
