@@ -2,7 +2,7 @@ import java.net.URL
 import java.util.zip.ZipInputStream
 
 group = "com.example.ffi_practice"
-version = "0.0.1"
+version = "0.0.2"
 
 plugins {
     id("com.android.library")

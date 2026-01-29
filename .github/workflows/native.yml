@@ -37,6 +37,21 @@ jobs:
           name: ffi_practice_native_ios
           path: ios/Frameworks/ffi_practice_native.xcframework
 
+      - name: Package iOS xcframework
+        run: |
+          mkdir -p dist/ios
+          cd ios/Frameworks
+          zip -r ../../dist/ios/ffi_practice_native-ios.zip ffi_practice_native.xcframework
+
+      - name: Upload iOS binaries to release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: |
+            dist/ios/ffi_practice_native-ios.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   android-native:
     name: Build Android native libs
     runs-on: ubuntu-latest
