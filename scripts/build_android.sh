@@ -137,29 +137,46 @@ abi_to_triple() {
   esac
 }
 
+ndk_host_tag() {
+  local prebuilt="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt"
+
+  for host in darwin-x86_64 darwin-arm64 linux-x86_64 windows-x86_64; do
+    if [[ -d "$prebuilt/$host" ]]; then
+      echo "$host"
+      return
+    fi
+  done
+
+  echo "❌ Could not determine NDK host tag in $prebuilt"
+  exit 1
+}
+
 copy_android_runtime_libs() {
   local abi="$1"
   local triple
   triple="$(abi_to_triple "$abi")"
 
+  local host
+  host="$(ndk_host_tag)"
+
   local opencv_libs="$THIRD_PARTY_DIR/opencv-android-sdk/sdk/native/jni/libs"
-  local libcxx_root="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/$triple"
+  local libcxx_path="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/$host/sysroot/usr/lib/$triple/libc++_shared.so"
 
   mkdir -p "$OUT_ANDROID_DIR/$abi"
 
   log "Copying OpenCV runtime for $abi"
-  cp "$opencv_libs/$abi/libopencv_java4.so" \
-     "$OUT_ANDROID_DIR/$abi/"
+  cp "$opencv_libs/$abi/libopencv_java4.so" "$OUT_ANDROID_DIR/$abi/"
 
   log "Copying libc++_shared for $abi"
-  if [[ ! -f "$libcxx_root/libc++_shared.so" ]]; then
-    echo "❌ libc++_shared.so not found at:"
-    echo "   $libcxx_root/libc++_shared.so"
+  if [[ ! -f "$libcxx_path" ]]; then
+    echo "❌ libc++_shared.so not found."
+    echo "   Tried: $libcxx_path"
+    echo "   NDK: $ANDROID_NDK_HOME"
+    echo "   Host tag detected: $host"
     exit 1
   fi
 
-  cp "$libcxx_root/libc++_shared.so" \
-     "$OUT_ANDROID_DIR/$abi/"
+  cp "$libcxx_path" "$OUT_ANDROID_DIR/$abi/libc++_shared.so"
 }
 
 # -------------------------------------------------
