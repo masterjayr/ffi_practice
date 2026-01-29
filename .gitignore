@@ -70,7 +70,8 @@ native/ios/**/*.framework
 native/build/
 native/.build/
 native/**/build/
-native/include/
+native/include/opencv2/
+native/include/ZXing/
 
 # Prebuilt binaries
 *.so
