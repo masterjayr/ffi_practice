@@ -83,6 +83,7 @@ jobs:
           for abi in arm64-v8a armeabi-v7a x86_64; do
             mkdir -p dist/android/$abi
             cp android/src/main/jniLibs/$abi/*.so dist/android/$abi/
+            cp native/android/$abi/*.so dist/android/$abi/
             (cd dist/android && zip -r android-$abi.zip $abi)
           done
 
