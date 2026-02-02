@@ -45,7 +45,9 @@ class _QRScannerViewState extends State<QrScannerView> {
       backCamera,
       ResolutionPreset.medium,
       enableAudio: false,
-      imageFormatGroup: ImageFormatGroup.yuv420,
+      imageFormatGroup: Platform.isAndroid
+          ? ImageFormatGroup.yuv420
+          : ImageFormatGroup.bgra8888,
     );
 
     await _controller!.initialize();

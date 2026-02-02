@@ -9,6 +9,9 @@ Uint8List bgraToGray(CameraImage image) {
   final width = image.width;
   final height = image.height;
 
+  debugPrint(
+    "iOS BGRA: width=$width height=$height rowStride=$rowStride expectedRow=${width * 4}",
+  );
   final gray = Uint8List(width * height);
 
   int dst = 0;
@@ -17,6 +20,8 @@ Uint8List bgraToGray(CameraImage image) {
     final int rowStart = y * rowStride;
 
     for (int x = 0; x < width; x++) {
+      if (dst >= gray.length) break; // 🔒 HARD SAFETY GUARD
+
       final int pixelOffset = rowStart + (x * 4);
 
       final int b = bytes[pixelOffset];
