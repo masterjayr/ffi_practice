@@ -1,6 +1,7 @@
 PODS:
   - camera_avfoundation (0.0.1):
     - Flutter
+  - ffi_practice (0.0.2)
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
+  - ffi_practice (from `.symlinks/plugins/ffi_practice/ios`)
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
@@ -16,6 +18,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
+  ffi_practice:
+    :path: ".symlinks/plugins/ffi_practice/ios"
   Flutter:
     :path: Flutter
   integration_test:
@@ -25,6 +29,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   camera_avfoundation: 281867ff09f1da66f031a184ecfbc6f2e625c9f5
+  ffi_practice: ca7347b485a4be7b6132f5bf317f4bcd97f320f9
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
