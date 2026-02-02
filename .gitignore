@@ -42,6 +42,8 @@ ios/Frameworks/*.xcframework
 ios/Frameworks/*.framework
 ios/Frameworks/ZXing.framework/
 ios/Frameworks/opencv2.framework/
+ios/*.xcframework
+ios/*.framework
 
 # Android
 android/.gradle/
